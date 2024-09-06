@@ -28,22 +28,22 @@ on:
         required: false
       ZIP_NAME:
         type: string
-        default: 本子.tar.gz
+        default: .tar.gz
         description: 压缩文件名称
         required: false
       UPLOAD_NAME:
         type: string
-        default: Click me to download
+        default: .tar.gz
         description: 上传文件名称
         required: false
       JM_USERNAME:
         type: string
-        default: ''
+        default: 'aloofray21'
         description: '禁漫帐号（不建议使用，用户名和密码会泄露在日志中。最好用secrets）'
         required: false
       JM_PASSWORD:
         type: string
-        default: ''
+        default: 'AayzgE5rqJ*5Myn'
         description: '禁漫密码（不建议使用，用户名和密码会泄露在日志中。最好用secrets）'
         required: false
 
