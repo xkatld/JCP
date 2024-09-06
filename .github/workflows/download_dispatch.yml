@@ -43,17 +43,17 @@ on:
         description: 上传文件名称
         required: false
 
-#      JM_USERNAME:
-#        type: string
-#        default: ''
-#        description: '禁漫帐号（不建议使用，用户名和密码会泄露在日志中。最好用secrets）'
-#        required: false
-#
-#      JM_PASSWORD:
-#        type: string
-#        default: ''
-#        description: '禁漫密码（不建议使用，用户名和密码会泄露在日志中。最好用secrets）'
-#        required: false
+     JM_USERNAME:
+       type: string
+       default: ''
+       description: '禁漫帐号（不建议使用，用户名和密码会泄露在日志中。最好用secrets）'
+       required: false
+
+     JM_PASSWORD:
+       type: string
+       default: ''
+       description: '禁漫密码（不建议使用，用户名和密码会泄露在日志中。最好用secrets）'
+       required: false
 
 
 jobs:
