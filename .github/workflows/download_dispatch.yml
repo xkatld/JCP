@@ -80,7 +80,7 @@ jobs:
       EMAIL_CONTENT: ${{ secrets.EMAIL_CONTENT }}
 
       # 固定值
-      JM_DOWNLOAD_DIR: /mnt
+      JM_DOWNLOAD_DIR: /home/runner/work/jmcomic/download/
 
     steps:
       - uses: actions/checkout@v4
