@@ -1,0 +1,55 @@
+name: 清空系统
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      # 强制清理所有不必要的文件，包括 /mnt 目录
+      - name: Force clear all unnecessary files, including /mnt
+        run: |
+          echo "Starting full disk cleanup..."
+
+          # 删除不常用的环境和临时文件
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+
+          # 删除系统日志和缓存
+          sudo rm -rf /var/log/*
+          sudo rm -rf /tmp/*
+          sudo rm -rf ~/.cache/*
+
+          # 删除 home 目录下的所有文件
+          sudo rm -rf /home/runner/*
+
+          # 删除 Docker 镜像和缓存（如果有的话）
+          sudo docker system prune -af --volumes || true
+
+          # 清理 /mnt 目录
+          sudo rm -rf /mnt/*
+
+          # 清理其他非必要文件，保留基本运行环境
+          sudo rm -rf /usr/share/doc
+          sudo rm -rf /usr/share/man
+          sudo rm -rf /usr/include
+          sudo rm -rf /var/lib/apt/lists/*
+          
+          # 强制同步文件系统以确保所有清理生效
+          sudo sync
+          echo "Disk space after full cleanup:"
+          df -h
+
+      # 执行编译或构建步骤
+      - name: Build Project
+        run: |
+          echo "Starting build..."
+          # 在这里放置你的构建命令
