@@ -5,56 +5,55 @@ on:
     inputs:
       JM_ALBUM_IDS:
         type: string
-        description: 本子id（多个id用-隔开，如 '123-456-789'）
+        description: "本子 ID（多个 ID 用 - 隔开，如 '123-456-789'）"
         required: false
 
       JM_PHOTO_IDS:
         type: string
-        description: 章节id（单独下载章节，多个id同上）
+        description: "章节 ID（单独下载章节，多个 ID 同上）"
         required: false
 
       CLIENT_IMPL:
         type: string
-        description: 客户端类型（client.impl），下载失败时，你可以尝试填入此项重试。'api' 表示移动端，'html' 表示网页端。
-        default: ''
+        description: "客户端类型（client.impl）。下载失败时，可尝试填入此项重试。'api' 表示移动端，'html' 表示网页端。"
+        default: ""
         required: false
 
       IMAGE_SUFFIX:
         type: string
-        description: 图片后缀（download.cache.suffix），默认为空，表示不做图片格式转换。可填入例如 'png' 'jpg'
-        default: 'png'
+        description: "图片后缀（download.cache.suffix）。默认为空，不做图片格式转换。可填入例如 'png' 或 'jpg'。"
+        default: "png"
         required: false
 
       DIR_RULE:
         type: string
-        description: 下载文件夹规则（dir_rule.rule）。默认使用配置文件的 'Bd_Aauthor_Atitle_Pindex'。
-        default: ''
+        description: "下载文件夹规则（dir_rule.rule）。默认使用配置文件的 'Bd_Aauthor_Atitle_Pindex'。"
+        default: ""
         required: false
 
       ZIP_NAME:
         type: string
-        default: test.tar.gz
-        description: 压缩文件名称
+        description: "压缩文件名称"
+        default: "test.tar.gz"
         required: false
 
       UPLOAD_NAME:
         type: string
-        default: Click me to download
-        description: 上传文件名称
+        description: "上传文件名称"
+        default: "Click me to download"
         required: false
 
-     JM_USERNAME:
-       type: string
-       default: 'aloofray21'
-       description: '禁漫帐号（不建议使用，用户名和密码会泄露在日志中。最好用secrets）'
-       required: false
+      JM_USERNAME:
+        type: string
+        description: "禁漫帐号（不建议使用，用户名和密码会泄露在日志中。最好用 secrets）"
+        default: "aloofray21"
+        required: false
 
-     JM_PASSWORD:
-       type: string
-       default: 'AayzgE5rqJ*5Myn'
-       description: '禁漫密码（不建议使用，用户名和密码会泄露在日志中。最好用secrets）'
-       required: false
-
+      JM_PASSWORD:
+        type: string
+        description: "禁漫密码（不建议使用，用户名和密码会泄露在日志中。最好用 secrets）"
+        default: "AayzgE5rqJ*5Myn"
+        required: false
 
 jobs:
   crawler:
