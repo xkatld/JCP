@@ -22,7 +22,7 @@ on:
       IMAGE_SUFFIX:
         type: string
         description: 图片后缀（download.cache.suffix），默认为空，表示不做图片格式转换。可填入例如 'png' 'jpg'
-        default: ''
+        default: 'png'
         required: false
 
       DIR_RULE:
@@ -33,7 +33,7 @@ on:
 
       ZIP_NAME:
         type: string
-        default: 本子.tar.gz
+        default: test.tar.gz
         description: 压缩文件名称
         required: false
 
@@ -45,13 +45,13 @@ on:
 
      JM_USERNAME:
        type: string
-       default: ''
+       default: 'aloofray21'
        description: '禁漫帐号（不建议使用，用户名和密码会泄露在日志中。最好用secrets）'
        required: false
 
      JM_PASSWORD:
        type: string
-       default: ''
+       default: 'AayzgE5rqJ*5Myn'
        description: '禁漫密码（不建议使用，用户名和密码会泄露在日志中。最好用secrets）'
        required: false
 
@@ -81,7 +81,7 @@ jobs:
       EMAIL_CONTENT: ${{ secrets.EMAIL_CONTENT }}
 
       # 固定值
-      JM_DOWNLOAD_DIR: /home/runner/work/jmcomic/download/
+      JM_DOWNLOAD_DIR: /mnt
 
     steps:
       - uses: actions/checkout@v4
