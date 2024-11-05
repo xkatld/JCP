@@ -13,35 +13,35 @@ jobs:
         with:
           fetch-depth: 1
 
-      # 强制清理所有不必要的文件，包括 /mnt 目录
+      # 强制清理所有不必要的文件，包括跳过删除不了的文件
       - name: Force clear all unnecessary files, including /mnt
         run: |
           echo "Starting full disk cleanup..."
 
           # 删除不常用的环境和临时文件
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /usr/local/lib/android
-          sudo rm -rf /opt/ghc
+          sudo rm -rf /usr/share/dotnet || true
+          sudo rm -rf /usr/local/lib/android || true
+          sudo rm -rf /opt/ghc || true
 
           # 删除系统日志和缓存
-          sudo rm -rf /var/log/*
-          sudo rm -rf /tmp/*
-          sudo rm -rf ~/.cache/*
+          sudo rm -rf /var/log/* || true
+          sudo rm -rf /tmp/* || true
+          sudo rm -rf ~/.cache/* || true
 
           # 删除 home 目录下的所有文件
-          sudo rm -rf /home/runner/*
+          sudo rm -rf /home/runner/* || true
 
           # 删除 Docker 镜像和缓存（如果有的话）
           sudo docker system prune -af --volumes || true
 
-          # 清理 /mnt 目录
-          sudo rm -rf /mnt/*
+          # 清理 /mnt 目录，跳过不可删除的文件
+          sudo rm -rf /mnt/* || true
 
           # 清理其他非必要文件，保留基本运行环境
-          sudo rm -rf /usr/share/doc
-          sudo rm -rf /usr/share/man
-          sudo rm -rf /usr/include
-          sudo rm -rf /var/lib/apt/lists/*
+          sudo rm -rf /usr/share/doc || true
+          sudo rm -rf /usr/share/man || true
+          sudo rm -rf /usr/include || true
+          sudo rm -rf /var/lib/apt/lists/* || true
           
           # 强制同步文件系统以确保所有清理生效
           sudo sync
