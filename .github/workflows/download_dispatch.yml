@@ -88,6 +88,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Check disk space before run
+        run: df -h
 
       - name: Install Dependency
         run: |
@@ -114,6 +116,9 @@ jobs:
           cd $JM_DOWNLOAD_DIR
           tar -zcvf "../$ZIP_NAME" ./
           mv "../$ZIP_NAME" .
+
+      - name: Check disk space after run
+        run: df -h
 
       - name: 上传结果
         uses: actions/upload-artifact@v4
