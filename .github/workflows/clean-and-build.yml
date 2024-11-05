@@ -1,0 +1,42 @@
+name: Clean Disk and Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 检出代码
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1  # 只拉取最新的提交以节省空间
+
+      # 清理磁盘空间
+      - name: Clear up disk space
+        run: |
+          echo "Freeing up disk space..."
+
+          # 删除不常用的语言运行环境
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+
+          # 清理临时文件和用户缓存
+          sudo rm -rf /tmp/*
+          sudo rm -rf ~/.cache/*
+
+          # 同步文件系统确保清理生效
+          sudo sync
+          echo "Disk space after cleanup:"
+          df -h
+
+      # 执行编译或构建步骤
+      - name: Build Project
+        run: |
+          # 在这里添加实际的编译或构建命令
+          echo "Building project..."
